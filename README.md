@@ -14,7 +14,7 @@
 - 停止移动后不会立刻消失，会稍微停一下再淡出；
 - 整体偏轻快，不追求“糊成一条彩带”。
 
-## 可展示的效果
+## 可实现的效果
 
 - 左右移动光标，展示横向拖尾；
 - 上下换行，展示纵向跟随；
@@ -129,12 +129,26 @@ Code -> Download ZIP
 D:\OpenSource\vscode-neovide-cursor-lite
 ```
 
+macOS 可以放在：
+
+```txt
+/Users/your-name/vscode-neovide-cursor-lite
+```
+
+这里的 `your-name` 换成你的 macOS 用户名。
+
 ### 3. 打开 VS Code 设置 JSON
 
-按：
+Windows / Linux 按：
 
 ```txt
 Ctrl + Shift + P
+```
+
+macOS 按：
+
+```txt
+Cmd + Shift + P
 ```
 
 输入并打开：
@@ -147,9 +161,19 @@ Preferences: Open User Settings (JSON)
 
 在 `settings.json` 里加入：
 
+Windows 示例：
+
 ```json
 "vscode_custom_css.imports": [
   "file:///D:/OpenSource/vscode-neovide-cursor-lite/cursor-trail.js"
+]
+```
+
+macOS 示例：
+
+```json
+"vscode_custom_css.imports": [
+  "file:///Users/your-name/vscode-neovide-cursor-lite/cursor-trail.js"
 ]
 ```
 
@@ -164,6 +188,8 @@ file:///D:/OpenSource/vscode-neovide-cursor-lite/cursor-trail.js
 ```txt
 D:\OpenSource\vscode-neovide-cursor-lite\cursor-trail.js
 ```
+
+macOS 路径也要写成完整的 `file:///Users/...`，不要写成 `~/...`。
 
 如果你原本已经有很多设置，记得 JSON 逗号规则：
 
@@ -184,12 +210,27 @@ Windows 上通常需要这样做：
 2. 右键 VS Code 图标；
 3. 选择“以管理员身份运行”。
 
+macOS 上如果 `Enable Custom CSS and JS` 或 `Reload Custom CSS and JS` 因为权限失败，可以先在终端执行：
+
+```bash
+sudo chown -R "$(whoami)" "/Applications/Visual Studio Code.app/Contents/MacOS/Electron"
+```
+
+如果你用的是 VS Code Insiders，路径通常是：
+
+```bash
+sudo chown -R "$(whoami)" "/Applications/Visual Studio Code - Insiders.app/Contents/MacOS/Electron"
+```
+
+这一步只在权限失败时需要。正常情况下，先直接执行下一步即可。
+
 ### 6. 启用注入
 
-在 VS Code 里按：
+在 VS Code 里打开命令面板：
 
 ```txt
-Ctrl + Shift + P
+Windows / Linux: Ctrl + Shift + P
+macOS: Cmd + Shift + P
 ```
 
 执行：
@@ -285,8 +326,9 @@ Reload Custom CSS and JS
 
 - `Custom CSS and JS Loader` 是否安装；
 - `settings.json` 里的路径是否真的指向 `cursor-trail.js`；
-- 路径是否使用了 `file:///D:/...` 格式；
+- 路径是否使用了 `file:///D:/...` 或 `file:///Users/...` 格式；
 - 是否用管理员权限执行过 `Enable Custom CSS and JS`；
+- macOS 是否因为 VS Code 安装目录权限导致 reload 失败；
 - 是否执行过 `Reload Custom CSS and JS`；
 - 是否完整重启 VS Code。
 

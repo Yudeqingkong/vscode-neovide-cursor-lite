@@ -120,12 +120,12 @@ git push -u origin main
 
 ```txt
 vscode
-vscode-custom-css
 cursor
 neovide
 animation
 javascript
 monaco-editor
+custom-css
 ```
 
 ## 7. 创建第一个 Release
