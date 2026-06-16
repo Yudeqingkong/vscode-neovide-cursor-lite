@@ -6,21 +6,22 @@
 
 > English short version: a single-file Neovide-like cursor animation script for VS Code, loaded through Custom CSS and JS Loader.
 
-## 效果
-
-演示视频稍后补在这里：
-
-```md
-![preview](./assets/preview.gif)
-```
-
-目前的效果目标是：
+## 功能
 
 - 光标移动时被拉成长方形/四边形；
 - 领先的一边更快，拖尾的一边更慢；
 - 拖尾颜色自动跟随 VS Code 当前光标颜色；
 - 停止移动后不会立刻消失，会稍微停一下再淡出；
 - 整体偏轻快，不追求“糊成一条彩带”。
+
+## 可展示的效果
+
+- 左右移动光标，展示横向拖尾；
+- 上下换行，展示纵向跟随；
+- 快速移动或跳转，展示四角弹簧拉伸；
+- 停止移动，展示尾巴短暂停留后淡出；
+- 修改 `editorCursor.foreground`，展示拖尾颜色跟随光标颜色；
+- 修改 `CONFIG` 里的 `animationLength` / `holdMs`，展示轻快和明显拖尾两种手感。
 
 ## 这个项目适合谁
 
@@ -54,7 +55,7 @@
 | 启动保护 | 完整扩展流程 | 等待 DOM 准备好再启动 |
 | 安全透明度 | 扩展项目结构 | 单文件，比较容易自己审 |
 
-坦诚一点说：参考项目功能更完整，本项目更像“我只想要这个效果，别给我端上一整桌工具”的版本。
+坦诚一点说：参考项目功能更完整。
 
 ## 安全说明
 
@@ -94,8 +95,6 @@
 
 ## 安装教程
 
-下面是保姆级步骤。已经会的人可以跳着看，不会的人照着做就行。
-
 ### 1. 安装 Custom CSS and JS Loader
 
 在 VS Code 里打开扩展面板：
@@ -118,13 +117,7 @@ be5invis.vscode-custom-css
 
 ### 2. 下载这个项目
 
-如果你会 Git：
-
-```powershell
-git clone https://github.com/Yudeqingkong/vscode-neovide-cursor-lite.git D:\OpenSource\vscode-neovide-cursor-lite
-```
-
-如果你不会 Git，也可以在 GitHub 页面点：
+在 GitHub 页面点：
 
 ```txt
 Code -> Download ZIP
@@ -135,8 +128,6 @@ Code -> Download ZIP
 ```txt
 D:\OpenSource\vscode-neovide-cursor-lite
 ```
-
-路径固定很重要。今天放桌面，明天拖到下载文件夹，后天又问为什么没效果，这种剧情我们尽量不要拍。
 
 ### 3. 打开 VS Code 设置 JSON
 
@@ -337,8 +328,6 @@ fadeMs: 120,
 animationLength: 0.12,
 scanIntervalMs: 150,
 ```
-
-动画这种东西就是这样：越丝滑，越吃一点点资源。世界上没有免费的午餐，只有比较会伪装的动画帧。
 
 ## 卸载
 

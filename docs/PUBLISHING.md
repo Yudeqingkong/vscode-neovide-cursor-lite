@@ -157,23 +157,7 @@ Initial release of VS Code Neovide Cursor Lite.
 
 然后发布。
 
-## 8. 演示视频
-
-等你录好演示视频或 GIF，可以放到：
-
-```txt
-assets/preview.gif
-```
-
-然后在 `README.md` 里把 Preview 部分替换成：
-
-```md
-![preview](./assets/preview.gif)
-```
-
-也可以把视频上传到 GitHub release 或 issue，再把链接贴进 README。
-
-## 9. VS Code 更新后的维护说明
+## 8. VS Code 更新后的维护说明
 
 VS Code 更新可能会让 Custom CSS and JS Loader 的注入失效。
 
