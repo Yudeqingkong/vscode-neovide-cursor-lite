@@ -81,7 +81,7 @@
 
 ```json
 "vscode_custom_css.imports": [
-  "file:///D:/OpenSource/vscode-neovide-cursor-lite/cursor-trail.js"
+  "file:///C:/Users/your-name/vscode-neovide-cursor-lite/cursor-trail.js"
 ]
 ```
 
@@ -97,13 +97,7 @@
 
 ### 1. 安装 Custom CSS and JS Loader
 
-在 VS Code 里打开扩展面板：
-
-```txt
-Ctrl + Shift + X
-```
-
-搜索并安装：
+在 VS Code 扩展面板里搜索并安装：
 
 ```txt
 Custom CSS and JS Loader
@@ -123,19 +117,21 @@ be5invis.vscode-custom-css
 Code -> Download ZIP
 ```
 
-然后解压到一个固定位置，例如：
+然后解压到一个固定位置。
+
+Windows 例如：
 
 ```txt
-D:\OpenSource\vscode-neovide-cursor-lite
+C:\Users\your-name\vscode-neovide-cursor-lite
 ```
 
-macOS 可以放在：
+macOS 例如：
 
 ```txt
 /Users/your-name/vscode-neovide-cursor-lite
 ```
 
-这里的 `your-name` 换成你的 macOS 用户名。
+这里的 `your-name` 换成你的系统用户名。也可以放到其他固定目录，重点是后面的 `settings.json` 路径要和真实位置一致。
 
 ### 3. 打开 VS Code 设置 JSON
 
@@ -165,7 +161,7 @@ Windows 示例：
 
 ```json
 "vscode_custom_css.imports": [
-  "file:///D:/OpenSource/vscode-neovide-cursor-lite/cursor-trail.js"
+  "file:///C:/Users/your-name/vscode-neovide-cursor-lite/cursor-trail.js"
 ]
 ```
 
@@ -180,13 +176,13 @@ macOS 示例：
 注意 Windows 路径要写成这样：
 
 ```txt
-file:///D:/OpenSource/vscode-neovide-cursor-lite/cursor-trail.js
+file:///C:/Users/your-name/vscode-neovide-cursor-lite/cursor-trail.js
 ```
 
 不要写成这样：
 
 ```txt
-D:\OpenSource\vscode-neovide-cursor-lite\cursor-trail.js
+C:\Users\your-name\vscode-neovide-cursor-lite\cursor-trail.js
 ```
 
 macOS 路径也要写成完整的 `file:///Users/...`，不要写成 `~/...`。
@@ -197,12 +193,12 @@ macOS 路径也要写成完整的 `file:///Users/...`，不要写成 `~/...`。
 {
   "editor.fontSize": 17,
   "vscode_custom_css.imports": [
-    "file:///D:/OpenSource/vscode-neovide-cursor-lite/cursor-trail.js"
+    "file:///C:/Users/your-name/vscode-neovide-cursor-lite/cursor-trail.js"
   ]
 }
 ```
 
-### 5. 用管理员权限启动 VS Code
+### 5. 给 VS Code 足够权限
 
 Windows 上通常需要这样做：
 
@@ -210,19 +206,7 @@ Windows 上通常需要这样做：
 2. 右键 VS Code 图标；
 3. 选择“以管理员身份运行”。
 
-macOS 上如果 `Enable Custom CSS and JS` 或 `Reload Custom CSS and JS` 因为权限失败，可以先在终端执行：
-
-```bash
-sudo chown -R "$(whoami)" "/Applications/Visual Studio Code.app/Contents/MacOS/Electron"
-```
-
-如果你用的是 VS Code Insiders，路径通常是：
-
-```bash
-sudo chown -R "$(whoami)" "/Applications/Visual Studio Code - Insiders.app/Contents/MacOS/Electron"
-```
-
-这一步只在权限失败时需要。正常情况下，先直接执行下一步即可。
+macOS 可以先直接执行下一步。只有在启用或重载时提示权限失败，才需要看下面的“macOS 权限失败”。
 
 ### 6. 启用注入
 
@@ -264,6 +248,8 @@ Reload Custom CSS and JS
 ```
 
 脚本会读取 `editorCursor.foreground`，所以你改真实光标颜色，动画颜色也会一起变。
+
+如果你已经有 `workbench.colorCustomizations`，不要整段覆盖，只把 `editorCursor.foreground` 这一项合进去即可。
 
 ## 调参
 
@@ -326,11 +312,27 @@ Reload Custom CSS and JS
 
 - `Custom CSS and JS Loader` 是否安装；
 - `settings.json` 里的路径是否真的指向 `cursor-trail.js`；
-- 路径是否使用了 `file:///D:/...` 或 `file:///Users/...` 格式；
-- 是否用管理员权限执行过 `Enable Custom CSS and JS`；
+- 路径是否使用了 `file:///C:/Users/your-name/...` 或 `file:///Users/your-name/...` 格式；
+- Windows 是否用管理员权限执行过 `Enable Custom CSS and JS`；
 - macOS 是否因为 VS Code 安装目录权限导致 reload 失败；
 - 是否执行过 `Reload Custom CSS and JS`；
 - 是否完整重启 VS Code。
+
+### macOS 权限失败
+
+如果 macOS 上 `Enable Custom CSS and JS` 或 `Reload Custom CSS and JS` 因为权限失败，可以打开终端执行：
+
+```bash
+sudo chown -R "$(whoami)" "/Applications/Visual Studio Code.app/Contents/MacOS/Electron"
+```
+
+如果你用的是 VS Code Insiders，路径通常是：
+
+```bash
+sudo chown -R "$(whoami)" "/Applications/Visual Studio Code - Insiders.app/Contents/MacOS/Electron"
+```
+
+如果你的 VS Code 不在 `/Applications`，需要把路径改成自己的安装位置。
 
 ### VS Code 提示安装损坏
 
@@ -361,7 +363,7 @@ Reload Custom CSS and JS
 
 ### 感觉有点卡
 
-可以试试：
+如果感觉卡，可以先试这组更轻的参数：
 
 ```js
 useShadow: false,
@@ -373,13 +375,7 @@ scanIntervalMs: 150,
 
 ## 卸载
 
-从 `settings.json` 里删掉：
-
-```json
-"vscode_custom_css.imports": [
-  "file:///D:/OpenSource/vscode-neovide-cursor-lite/cursor-trail.js"
-]
-```
+从 `settings.json` 里删掉你之前加入的 `vscode_custom_css.imports` 配置。
 
 然后执行：
 
@@ -391,13 +387,13 @@ Reload Custom CSS and JS
 
 ## 致谢
 
-Inspired by:
+本项目参考了：
 
 - [30d98f9b2/Neovide-Cursor](https://github.com/30d98f9b2/Neovide-Cursor)
-- Original work credited there to LengineerC
+- 原项目中标注的作者：LengineerC
 - [Neovide](https://github.com/neovide/neovide)
 
-本项目保留了“canvas + 弹簧角点追随”的核心思路，并把它整理成一个更轻、更透明、方便自己改的本地注入脚本。
+本项目保留了“canvas + 弹簧角点追随”的核心思路，并把它整理成一个更轻、更透明、方便自行调整的本地注入脚本。
 
 ## License
 

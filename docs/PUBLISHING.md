@@ -2,10 +2,10 @@
 
 这是给维护者看的发布清单。只需要 Git，不需要 GitHub CLI。
 
-本地仓库建议放在 D 盘：
+下面的命令假设你的本地仓库在一个固定目录。路径可以按自己的实际位置调整，例如：
 
 ```txt
-D:\OpenSource\vscode-neovide-cursor-lite
+C:\Users\your-name\vscode-neovide-cursor-lite
 ```
 
 ## 1. 配置 Git 身份
@@ -44,11 +44,11 @@ Block command line pushes that expose my email
 在仓库目录执行：
 
 ```powershell
-cd D:\OpenSource\vscode-neovide-cursor-lite
+cd C:\Users\your-name\vscode-neovide-cursor-lite
 rg -n -i "gmail|AppData|C:\\Users|Temp|token|secret|password|api[_-]?key|private[_-]?key|github_pat_|ghp_" .
 ```
 
-正常情况下不应该出现真实邮箱、私人路径、token、密钥。
+正常情况下不应该出现真实邮箱、真实本机用户名、token、密钥。命中 `your-name` 这类占位示例是正常的。
 
 再检查脚本有没有危险 API：
 
@@ -69,7 +69,7 @@ node --check cursor-trail.js
 ## 3. 提交本地仓库
 
 ```powershell
-cd D:\OpenSource\vscode-neovide-cursor-lite
+cd C:\Users\your-name\vscode-neovide-cursor-lite
 git status
 git add .
 git commit -m "Initial release"

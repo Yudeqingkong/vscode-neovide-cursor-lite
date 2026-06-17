@@ -13,7 +13,7 @@ This project should be loaded from a local file path, for example:
 
 ```json
 "vscode_custom_css.imports": [
-  "file:///D:/OpenSource/vscode-neovide-cursor-lite/cursor-trail.js"
+  "file:///C:/Users/your-name/vscode-neovide-cursor-lite/cursor-trail.js"
 ]
 ```
 
