@@ -182,7 +182,7 @@ file:///C:/Users/your-name/vscode-neovide-cursor-lite/cursor-trail.js
 不要写成这样：
 
 ```txt
-C:\Users\your-name\vscode-neovide-cursor-lite\cursor-trail.js
+C:/Users/your-name/vscode-neovide-cursor-lite/cursor-trail.js
 ```
 
 macOS 路径也要写成完整的 `file:///Users/...`，不要写成 `~/...`。
